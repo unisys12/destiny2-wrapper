@@ -9,5 +9,7 @@ import (
 func main() {
 	fmt.Println("This is a work in progress")
 
-	fmt.Println(bungie.Manifest())
+	manifest := bungie.Manifest()
+
+	fmt.Println(manifest.Response.Version)
 }
