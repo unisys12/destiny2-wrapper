@@ -11,5 +11,6 @@ func main() {
 
 	manifest := bungie.Manifest()
 
-	fmt.Println(manifest.Response.Version)
+	// Return the Manifest Version
+	fmt.Printf("%+v", manifest.Response)
 }
