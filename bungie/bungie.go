@@ -26,9 +26,9 @@ type ManifestResponse struct {
 }
 
 type ResponseProp struct {
-	Version           string `json:"version"`
-	MobileContentPath string `json:"mobileAssetContentPath"`
-	// mobileGearAssetDataBases       interface{}
+	Version                  string `json:"version"`
+	MobileContentPath        string `json:"mobileAssetContentPath"`
+	MobileGearAssetDataBases MobileGearAssetDataBasesResponse
 	// mobileWorldContentPaths        interface{}
 	// jsonWorldContentPaths          interface{}
 	// jsonWorldComponentContentPaths interface{}
@@ -37,7 +37,9 @@ type ResponseProp struct {
 	// iconImagePyramidInfo           interface{}
 }
 
-type MobileGearAssetDataBasesResponse struct {
+type MobileGearAssetDataBasesResponse []struct {
+	Version int    `json:"version"`
+	Path    string `json:"path"`
 }
 
 func init() {
@@ -48,7 +50,20 @@ func init() {
 	}
 }
 
-func Manifest() *ManifestResponse {
+// func MobileGearAssetDataBasePaths() (*MobileGearAssetDataBasesResponse, error) {
+// 	manifest, err := Manifest()
+// 	if err != nil {
+// 		log.Fatalf("There was an error fetching the Manifest: %v", err)
+// 	}
+
+// 	fmt.Printf("%+v", manifest)
+
+// 	var mobileGearDatabasePaths[] MobileGearAssetDataBasesResponse
+
+// 	return &mobileGearDatabasePaths[], err
+// }
+
+func Manifest() (*ManifestResponse, error) {
 	// Setup a client since we need to add a custom header to the request
 	client := &http.Client{}
 
@@ -84,5 +99,5 @@ func Manifest() *ManifestResponse {
 		log.Fatalf("There was an issue while decoding the json response: %v", jsonErr)
 	}
 	// fmt.Printf("%+v", manifestResponse)
-	return &manifestResponse
+	return &manifestResponse, err
 }

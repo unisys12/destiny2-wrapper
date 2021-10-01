@@ -67,9 +67,9 @@ What we are most concerned with, when everything works, is the `Response` proper
 ```go
 // Response Struct
 type ResponseProp struct {
-	Version           string `json:"version"`
-	MobileContentPath string `json:"mobileAssetContentPath"`
-	// mobileGearAssetDataBases       interface{}
+	Version           		string `json:"version"`
+	MobileContentPath 		string `json:"mobileAssetContentPath"`
+	MobileGearAssetDataBases MobileGearAssetDataBasesResponse
 	// mobileWorldContentPaths        interface{}
 	// jsonWorldContentPaths          interface{}
 	// jsonWorldComponentContentPaths interface{}
