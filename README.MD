@@ -16,34 +16,27 @@ It is required for the package to work, so...
 
 ### Import
 
-Import the package using: `"github.com/unisys12/destiny2-wrapper/bungie"` in your import section.
+Import the package using: `"github.com/unisys12/destiny2-wrapper/manifest"` in your import section.
 
 ## Usage
 
 To get the current Manifest, which contains paths to all the actually platform data, simply call:
 
 ```go
-manifest := bungie.Manifest()
+version, err := manifest.ManifestVersion()
+	if err != nil {
+		fmt.Printf("%v", err)
+	}
+
+	fmt.Println(version)
 ```
 
 Currently, this returns something like the following:
 
-```json
-{97762.21.09.15.0038-0-bnet.40222 /common/destiny2_content/sqlite/asset/asset_sql_content_daf3f57e18acbfa94afed6379fb91bd9.content /common/destiny2_content/clanbanner/clanbanner_sql_content_16c6ae2603e05f6e11c5894c8b2ec485.content}
+```shell
+97762.21.09.15.0038-0-bnet.40222
 ```
 
-to get a look at the property keys/labels, just do:
-
-```go
-manifest := bungie.Manifest()
-fmt.Printf("%+v", manifest.Response)
-```
-
-which outputs something like:
-
-```json
-{Version:97762.21.09.15.0038-0-bnet.40222 MobileContentPath:/common/destiny2_content/sqlite/asset/asset_sql_content_daf3f57e18acbfa94afed6379fb91bd9.content MobileClanBannerDatabasePath:/common/destiny2_content/clanbanner/clanbanner_sql_content_16c6ae2603e05f6e11c5894c8b2ec485.content}
-```
 
 ## Wrapper Responses
 
