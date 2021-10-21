@@ -56,3 +56,33 @@ func ManifestVersion() (string, error) {
 
 	return mResp.Version(), nil
 }
+
+// MobileAsssetContentPath returns a string representing the latest
+// path to the MobileAsset .content file, which is a SQLite database
+// that contains... Ya know, I have no idea. It's currently not
+// documented by Bungie, so knock yourself out.
+//
+//		macp, err := manifest.MobileAsssetContentPath()
+//		if err != nil {
+//			fmt.Printf("%v", err)
+//		}
+//		fmt.Println(macp)
+//
+func MobileAsssetContentPath() (string, error) {
+	resp, err := http.Get(basePath + ManifestPath)
+	if err != nil {
+		log.Fatalf("There was an error making a request for the Manifest: %v", err)
+	}
+
+	resp.Header.Add("X-API-KEY", os.Getenv("BUNGIE_KEY"))
+
+	defer resp.Body.Close()
+
+	var mResp bungie.ManifestResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&mResp); err != nil {
+		log.Fatalf("There was a problem decoding the JSON Manifest file: %v", err)
+	}
+
+	return mResp.MobileAssetContentPath(), nil
+}

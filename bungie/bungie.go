@@ -30,3 +30,7 @@ type MobileGearAssetDataBasesResponse []struct {
 func (m ManifestResponse) Version() string {
 	return m.Response.Version
 }
+
+func (m ManifestResponse) MobileAssetContentPath() string {
+	return m.Response.MobileAssetContentPath
+}
