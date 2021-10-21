@@ -23,6 +23,21 @@ func init() {
 	}
 }
 
+// ManifestVersion
+//
+// Returns a string of the current version of the Manifest from
+// the Destiny 2 API. Will and can be used internally and externally
+// to check for Manifest updates, which happen on Tuesdays.
+// When the Manifest updates, the game updates. This doesn't mean
+// new content has been added. It only means that a new build of the
+// game was pushed out.
+//
+// 		version, err := manifest.ManifestVersion()
+//		if err != nil {
+//			fmt.Printf("%v", err)
+//		}
+//		fmt.Println(version)
+//
 func ManifestVersion() (string, error) {
 	resp, err := http.Get(basePath + ManifestPath)
 	if err != nil {
